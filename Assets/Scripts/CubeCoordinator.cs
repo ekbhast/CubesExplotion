@@ -13,6 +13,7 @@ public class CubeCoordinator : MonoBehaviour
     private CubeFactory _factory;
     private int MaxCubeValue = 6;
     private int MinCubeValue = 2;
+    float force = 10f;
 
 
     void Start()
@@ -51,16 +52,28 @@ public class CubeCoordinator : MonoBehaviour
         if (shouldSplit)
         {
             Vector3 scale = cube.Scale / 2;
+            float splitChance = cube.SplitChance / 2;
+            Vector3 explotionPosition = cube.transform.position;
+
             int cubeCount = Utils.GenerateRundomNumber(MinCubeValue, MaxCubeValue + 1);
 
             List<Vector3> cubePositions = GenerateCubePositions(cube.transform.position, scale, cubeCount);
 
-            List<Cube> cubes = _factory.Create(cubePositions, scale, Utils.GenerateRandomFloat());
+            List<Cube> cubes = _factory.Create(cubePositions, scale, splitChance);
 
             foreach (Cube cubed in cubes)
             {
                 SubscribeToClick(cubed);
+                Vector3 direction = cubed.transform.position - explotionPosition;
+                direction.Normalize();
+                Rigidbody rigidbody = cubed.GetComponent<Rigidbody>();
+                rigidbody.AddForce(
+                    direction * force,
+                    ForceMode.Impulse
+                );
             }
+
+            
         }
     }
 
