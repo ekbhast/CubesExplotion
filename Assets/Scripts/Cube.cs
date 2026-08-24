@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-
 public class Cube : MonoBehaviour
 {
     private Color _color;
     private Vector3 _position;
     private Vector3 _scale;
     private float _splitChance;
+
+    public event Action<Cube> Clicked;
 
     public Color Color => _color;
     public Vector3 Position => _position;
@@ -31,6 +31,6 @@ public class Cube : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Destroy(gameObject);
+        Clicked?.Invoke(this);
     }
 }   

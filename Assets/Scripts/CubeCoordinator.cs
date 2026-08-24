@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class CubeCoordinator : MonoBehaviour
 {
     [SerializeField] private int _cubeCount;
     [SerializeField] private Cube _cubePrefab;
@@ -11,7 +11,7 @@ public class NewBehaviourScript : MonoBehaviour
     private float _startSplitChance = 1f;
     private List<Vector3> _startCubePositions = new();
 
-      void Start()
+    void Start()
     {
         CubeFactory factory = new CubeFactory(_cubePrefab);
         float shiftY = 1.5f;
@@ -22,6 +22,43 @@ public class NewBehaviourScript : MonoBehaviour
             shiftY += 1.5f;
         }
 
-        factory.Create(_startCubePositions, _startScale, _startColor, _startSplitChance);
+        List<Cube> cubes = factory.Create(
+            _startCubePositions,
+            _startScale,
+            _startColor,
+            _startSplitChance
+            );
+
+        foreach(Cube cube in cubes)
+        {
+            SubscribeToClick(cube);
+        }
+    }
+
+    private void HandleCubeClick(Cube cube)
+    {
+        TrySplitCube(cube);
+        DestroyCube(cube);
+    }
+
+    private void TrySplitCube(Cube cube)
+    {
+        Debug.Log("Чпоньк");
+    }
+
+    private void SubscribeToClick(Cube cube)
+    {
+        cube.Clicked += HandleCubeClick;
+    }
+
+    private void UnsubscribeToClick(Cube cube)
+    {
+        cube.Clicked -= HandleCubeClick;
+    }
+
+    private void DestroyCube(Cube cube)
+    {
+        UnsubscribeToClick(cube);
+        Destroy(cube.gameObject);
     }
 }
