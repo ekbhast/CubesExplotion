@@ -14,12 +14,16 @@ public class Cube : MonoBehaviour
     public Vector3 Scale => _scale;
     public float SplitChance => _splitChance;
 
-    public void Initialize(Cube data)
+    public void Initialize(
+        Vector3 position,
+        Vector3 scale,
+        Color color,
+        float splitChance)
     {
-        _color = data.Color;
-        _position = data.Position;
-        _scale = data.Scale;
-        _splitChance = data.SplitChance;
+        _position = position;
+        _scale = scale;
+        _color = color;
+        _splitChance = splitChance;
 
         transform.position = _position;
         transform.localScale = _scale;
