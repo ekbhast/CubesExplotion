@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,18 +10,18 @@ public class CubeFactory
         _prefab = prefab;
     }
     
-    public List<Cube> Create(int cubeCount, Vector3 position, Vector3 scale, Color color, float splitChance)
+    public List<Cube> Create(List<Vector3> cubePositions, Vector3 scale, Color color, float splitChance)
     {
         List<Cube> cubes = new();
 
-        for (int i = 0; i < cubeCount; i++)
+        foreach (Vector3 cubePosition in cubePositions)
         {
             Cube cube = Object.Instantiate(_prefab);
             cube.Initialize(
-                position,
+                cubePosition,
                 scale,
                 color,
-                splitChance
+                splitChance 
             );
 
             cubes.Add(cube);
