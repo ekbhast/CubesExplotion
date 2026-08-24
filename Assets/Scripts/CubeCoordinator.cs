@@ -10,7 +10,6 @@ public class NewBehaviourScript : MonoBehaviour
       void Start()
     {
         CubeFactory factory = new CubeFactory(_cubePrefab);
-
         factory.Create(_cubeCount);
     }
 }

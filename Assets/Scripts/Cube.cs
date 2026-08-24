@@ -24,4 +24,9 @@ public class Cube : MonoBehaviour
         transform.position = _position;
         transform.localScale = _scale;
     }
-}
+
+    private void OnMouseDown()
+    {
+        Destroy(gameObject);
+    }
+}   
