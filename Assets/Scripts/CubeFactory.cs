@@ -11,20 +11,22 @@ public class CubeFactory
         _prefab = prefab;
     }
     
-    public List<Cube> Create(CubeCreateData data, int cubeCount)
+    public List<Cube> Create(int cubeCount)
     {
         List<Cube> cubes = new();
-        Vector3 cubePosition = data.Position; 
+
+        Vector3 cubePosition = new Vector3(0, 1, 0);
+        Vector3 cubeScale = Vector3.one;
 
         for (int i = 0; i < cubeCount; i++)
         {
             Cube cube = Object.Instantiate(_prefab);
 
             cube.transform.position = cubePosition;
-            cube.transform.localScale = data.Scale;
+            cube.transform.localScale = cubeScale;
 
             cubes.Add(cube);
-            
+
             cubePosition += new Vector3(0.6f, 2f, 0);
         }
 

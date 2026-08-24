@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int _cubeCount;
+    [SerializeField] private Cube _cubePrefab;
 
-    // Update is called once per frame
-    void Update()
+      void Start()
     {
-        
+        CubeFactory factory = new CubeFactory(_cubePrefab);
+
+        factory.Create(_cubeCount);
     }
 }

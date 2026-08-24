@@ -14,7 +14,7 @@ public class Cube : MonoBehaviour
     public Vector3 Scale => _scale;
     public float SplitChance => _splitChance;
 
-    public void Initialize(CubeCreateData data)
+    public void Initialize(Cube data)
     {
         _color = data.Color;
         _position = data.Position;
@@ -23,15 +23,5 @@ public class Cube : MonoBehaviour
 
         transform.position = _position;
         transform.localScale = _scale;
-    }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
