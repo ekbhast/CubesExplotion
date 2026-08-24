@@ -2,14 +2,12 @@ using System;
 using UnityEngine;
 public class Cube : MonoBehaviour
 {
-    private Color _color;
     private Vector3 _position;
     private Vector3 _scale;
     private float _splitChance;
 
     public event Action<Cube> Clicked;
 
-    public Color Color => _color;
     public Vector3 Position => _position;
     public Vector3 Scale => _scale;
     public float SplitChance => _splitChance;
@@ -22,15 +20,17 @@ public class Cube : MonoBehaviour
     {
         _position = position;
         _scale = scale;
-        _color = color;
         _splitChance = splitChance;
 
         transform.position = _position;
         transform.localScale = _scale;
+
+        GetComponent<Renderer>().material.color = color;
     }
 
     private void OnMouseDown()
     {
+        Destroy(gameObject);
         Clicked?.Invoke(this);
     }
 }   

@@ -10,7 +10,7 @@ public class CubeFactory
         _prefab = prefab;
     }
     
-    public List<Cube> Create(List<Vector3> cubePositions, Vector3 scale, Color color, float splitChance)
+    public List<Cube> Create(List<Vector3> cubePositions, Vector3 scale, float splitChance)
     {
         List<Cube> cubes = new();
 
@@ -20,7 +20,7 @@ public class CubeFactory
             cube.Initialize(
                 cubePosition,
                 scale,
-                color,
+                Utils.GenerateRandomColor(),
                 splitChance 
             );
 

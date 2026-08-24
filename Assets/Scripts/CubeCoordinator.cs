@@ -10,10 +10,14 @@ public class CubeCoordinator : MonoBehaviour
     private Color _startColor = Color.white;
     private float _startSplitChance = 1f;
     private List<Vector3> _startCubePositions = new();
+    private CubeFactory _factory;
+    private int MaxCubeValue = 6;
+    private int MinCubeValue = 2;
+
 
     void Start()
     {
-        CubeFactory factory = new CubeFactory(_cubePrefab);
+        _factory = new CubeFactory(_cubePrefab);
         float shiftY = 1.5f;
 
         for(int i = 0; i < _cubeCount; i++)
@@ -22,10 +26,9 @@ public class CubeCoordinator : MonoBehaviour
             shiftY += 1.5f;
         }
 
-        List<Cube> cubes = factory.Create(
+        List<Cube> cubes = _factory.Create(
             _startCubePositions,
             _startScale,
-            _startColor,
             _startSplitChance
             );
 
@@ -43,7 +46,22 @@ public class CubeCoordinator : MonoBehaviour
 
     private void TrySplitCube(Cube cube)
     {
-        Debug.Log("Чпоньк");
+        bool shouldSplit = Utils.GenerateRandomFloat() <= cube.SplitChance;
+
+        if (shouldSplit)
+        {
+            Vector3 scale = cube.Scale / 2;
+            int cubeCount = Utils.GenerateRundomNumber(MinCubeValue, MaxCubeValue + 1);
+
+            List<Vector3> cubePositions = GenerateCubePositions(cube.transform.position, scale, cubeCount);
+
+            List<Cube> cubes = _factory.Create(cubePositions, scale, Utils.GenerateRandomFloat());
+
+            foreach (Cube cubed in cubes)
+            {
+                SubscribeToClick(cubed);
+            }
+        }
     }
 
     private void SubscribeToClick(Cube cube)
@@ -60,5 +78,40 @@ public class CubeCoordinator : MonoBehaviour
     {
         UnsubscribeToClick(cube);
         Destroy(cube.gameObject);
+    }
+
+    private List<Vector3> GenerateCubePositions(
+        Vector3 center,
+        Vector3 scale,
+        int cubeCount)
+    {
+        List<Vector3> positions = new();
+
+        float spacing = scale.x + 0.1f;
+
+        int sizeX = Mathf.CeilToInt(Mathf.Pow(cubeCount, 1f / 3f));
+        int sizeY = sizeX;
+        int sizeZ = Mathf.CeilToInt((float)cubeCount / (sizeX * sizeY));
+
+        for (int i = 0; i < cubeCount; i++)
+        {
+            int x = i % sizeX;
+            int y = (i / sizeX) % sizeY;
+            int z = i / (sizeX * sizeY);
+
+            float offsetX = (x - (sizeX - 1) / 2f) * spacing;
+            float offsetY = (y - (sizeY - 1) / 2f) * spacing;
+            float offsetZ = (z - (sizeZ - 1) / 2f) * spacing;
+
+            positions.Add(
+                center + new Vector3(
+                    offsetX,
+                    offsetY,
+                    offsetZ
+                )
+            );
+        }
+
+        return positions;
     }
 }
