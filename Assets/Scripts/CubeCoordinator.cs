@@ -103,9 +103,6 @@ public class CubeCoordinator : MonoBehaviour
         }
     }
 
-    //То что написанно ниже, написалай нейронка, слишком сложно для меня пока, хоть я и понимаю,
-    //что тут происходит
-
     private List<Vector3> GenerateCubePositions(
         Vector3 center,
         Vector3 scale,
