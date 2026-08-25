@@ -13,13 +13,14 @@ public class CubeCoordinator : MonoBehaviour
     private CubeFactory _factory;
     private int MaxCubeValue = 20;
     private int MinCubeValue = 10;
-    float force = 10f;
+    private float _force = 10f;
 
 
     void Start()
     {
-        _factory = new CubeFactory(_cubePrefab);
         float shiftY = 1.5f;
+
+        _factory = new CubeFactory(_cubePrefab);
 
         for(int i = 0; i < _cubeCount; i++)
         {   
@@ -52,28 +53,14 @@ public class CubeCoordinator : MonoBehaviour
         if (shouldSplit)
         {
             Vector3 scale = cube.Scale / 2;
-            float splitChance = cube.SplitChance / 2;
             Vector3 explotionPosition = cube.transform.position;
-
+            float splitChance = cube.SplitChance / 2;
             int cubeCount = Utils.GenerateRundomNumber(MinCubeValue, MaxCubeValue + 1);
 
             List<Vector3> cubePositions = GenerateCubePositions(cube.transform.position, scale, cubeCount);
-
             List<Cube> cubes = _factory.Create(cubePositions, scale, splitChance);
 
-            foreach (Cube cubed in cubes)
-            {
-                SubscribeToClick(cubed);
-                Vector3 direction = cubed.transform.position - explotionPosition;
-                direction.Normalize();
-                Rigidbody rigidbody = cubed.GetComponent<Rigidbody>();
-                rigidbody.AddForce(
-                    direction * force,
-                    ForceMode.Impulse
-                );
-            }
-
-            
+           ApplyExplosionForce(cubes, explotionPosition);
         }
     }
 
@@ -92,6 +79,32 @@ public class CubeCoordinator : MonoBehaviour
         UnsubscribeToClick(cube);
         Destroy(cube.gameObject);
     }
+
+    private void ApplyExplosionForce(
+    List<Cube> cubes,
+    Vector3 explosionPosition)
+    {
+        foreach (Cube newCube in cubes)
+        {
+            SubscribeToClick(newCube);
+
+            Vector3 direction =
+                newCube.transform.position - explosionPosition;
+
+            direction.Normalize();
+
+            Rigidbody rigidbody =
+                newCube.GetComponent<Rigidbody>();
+
+            rigidbody.AddForce(
+                direction * _force,
+                ForceMode.Impulse
+            );
+        }
+    }
+
+    //То что написанно ниже, написалай нейронка, слишком сложно для меня пока, хоть я и понимаю,
+    //что тут происходит
 
     private List<Vector3> GenerateCubePositions(
         Vector3 center,

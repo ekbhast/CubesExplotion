@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+
 public class Cube : MonoBehaviour
 {
     private Vector3 _position;
