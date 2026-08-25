@@ -14,18 +14,18 @@ public class CubeCoordinator : MonoBehaviour
     private int MinCubeValue = 2;
     private int MaxCubeValue = 6;
     private float _force = 10f;
+    private float _spaceY = 1.5f;
+    private float _shiftY = 1.5f;
 
 
     void Start()
     {
-        float shiftY = 1.5f;
-
         _factory = new CubeFactory(_cubePrefab);
 
         for(int i = 0; i < _cubeCount; i++)
         {   
-            _startCubePositions.Add(new Vector3(Utils.GenerateRundomNumber(-2, 2), shiftY, Utils.GenerateRundomNumber(-2, 2)));
-            shiftY += 1.5f;
+            _startCubePositions.Add(new Vector3(Utils.GenerateRundomNumber(-2, 2), _spaceY, Utils.GenerateRundomNumber(-2, 2)));
+            _spaceY += _shiftY;
         }
 
         List<Cube> cubes = _factory.Create(
