@@ -11,8 +11,8 @@ public class CubeCoordinator : MonoBehaviour
     private float _startSplitChance = 1f;
     private List<Vector3> _startCubePositions = new();
     private CubeFactory _factory;
-    private int MaxCubeValue = 20;
-    private int MinCubeValue = 10;
+    private int MinCubeValue = 2;
+    private int MaxCubeValue = 6;
     private float _force = 10f;
 
 
