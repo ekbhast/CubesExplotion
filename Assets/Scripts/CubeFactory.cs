@@ -20,7 +20,7 @@ public class CubeFactory
             cube.Initialize(
                 cubePosition,
                 scale,
-                Utils.GenerateRandomColor(),
+                Random.ColorHSV(),
                 splitChance 
             );
 

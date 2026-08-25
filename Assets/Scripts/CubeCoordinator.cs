@@ -11,8 +11,8 @@ public class CubeCoordinator : MonoBehaviour
     private float _startSplitChance = 1f;
     private List<Vector3> _startCubePositions = new();
     private CubeFactory _factory;
-    private int MinCubeValue = 2;
-    private int MaxCubeValue = 6;
+    private float MinCubeValue = 2f;
+    private float MaxCubeValue = 6f;
     private float _force = 10f;
     private float _spaceY = 1.5f;
     private float _shiftY = 1.5f;
@@ -24,7 +24,7 @@ public class CubeCoordinator : MonoBehaviour
 
         for(int i = 0; i < _cubeCount; i++)
         {   
-            _startCubePositions.Add(new Vector3(Utils.GenerateRundomNumber(-2, 2), _spaceY, Utils.GenerateRundomNumber(-2, 2)));
+            _startCubePositions.Add(new Vector3(Random.Range(-2f, 2f), _spaceY, Random.Range(-2f, 2f)));
             _spaceY += _shiftY;
         }
 
@@ -48,14 +48,14 @@ public class CubeCoordinator : MonoBehaviour
 
     private void TrySplitCube(Cube cube)
     {
-        bool shouldSplit = Utils.GenerateRandomFloat() <= cube.SplitChance;
+        bool shouldSplit = Random.Range(0f, 1f) <= cube.SplitChance;
 
         if (shouldSplit)
         {
             Vector3 scale = cube.Scale / 2;
             Vector3 explotionPosition = cube.transform.position;
             float splitChance = cube.SplitChance / 2;
-            int cubeCount = Utils.GenerateRundomNumber(MinCubeValue, MaxCubeValue + 1);
+            int cubeCount = Random.Range((int)MinCubeValue, (int)MaxCubeValue + 1);
 
             List<Vector3> cubePositions = GenerateCubePositions(cube.transform.position, scale, cubeCount);
             List<Cube> cubes = _factory.Create(cubePositions, scale, splitChance);
