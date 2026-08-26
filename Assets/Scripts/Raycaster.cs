@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Raycaster : MonoBehaviour
 {
-    [SerializeField] private InputController _inputController;
+    [SerializeField] private InputReader _inputReader;
     void Start()
     {
         SubscribeToMouseCkick();
@@ -17,7 +17,7 @@ public class Raycaster : MonoBehaviour
 
     private void SubscribeToMouseCkick()
     {
-       _inputController.Clicked += Raycast;
+       _inputReader.Clicked += Raycast;
     }
 
     private void Raycast()
