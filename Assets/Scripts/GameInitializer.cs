@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeCoordinator : MonoBehaviour
+public class GameInitializer : MonoBehaviour
 {
     [SerializeField] private int _cubeCount;
     [SerializeField] private Cube _cubePrefab;
