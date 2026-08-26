@@ -7,7 +7,6 @@ public class CubeCoordinator : MonoBehaviour
     [SerializeField] private Cube _cubePrefab;
 
     private Vector3 _startScale = new Vector3(1, 1, 1);
-    private Color _startColor = Color.white;
     private float _startSplitChance = 1f;
     private List<Vector3> _startCubePositions = new();
     private CubeFactory _factory;

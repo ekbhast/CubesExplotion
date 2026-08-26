@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Cube : MonoBehaviour
@@ -20,9 +19,6 @@ public class Cube : MonoBehaviour
         _position = position;
         _scale = scale;
         _splitChance = splitChance;
-
-        transform.position = _position;
-        transform.localScale = _scale;
 
         GetComponent<Renderer>().material.color = color;
     }
