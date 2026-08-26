@@ -22,7 +22,13 @@ public class Raycaster : MonoBehaviour
 
     private void Raycast()
     {
-        Debug.Log("Рэйкст сработал");
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if(Physics.Raycast(ray, out RaycastHit hit))
+        {
+            GameObject target = hit.collider.gameObject;
+            Debug.Log(target);
+        }
     }
 
 }

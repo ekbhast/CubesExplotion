@@ -7,8 +7,6 @@ public class Cube : MonoBehaviour
     private Vector3 _scale;
     private float _splitChance;
 
-    public event Action<Cube> Clicked;
-
     public Vector3 Position => _position;
     public Vector3 Scale => _scale;
     public float SplitChance => _splitChance;
@@ -27,11 +25,5 @@ public class Cube : MonoBehaviour
         transform.localScale = _scale;
 
         GetComponent<Renderer>().material.color = color;
-    }
-
-    private void OnMouseDown()
-    {
-        Destroy(gameObject);
-        Clicked?.Invoke(this);
     }
 }   

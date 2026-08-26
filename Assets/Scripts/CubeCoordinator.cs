@@ -33,11 +33,6 @@ public class CubeCoordinator : MonoBehaviour
             _startScale,
             _startSplitChance
             );
-
-        foreach(Cube cube in cubes)
-        {
-            SubscribeToClick(cube);
-        }
     }
 
     private void HandleCubeClick(Cube cube)
@@ -64,19 +59,10 @@ public class CubeCoordinator : MonoBehaviour
         }
     }
 
-    private void SubscribeToClick(Cube cube)
-    {
-        cube.Clicked += HandleCubeClick;
-    }
 
-    private void UnsubscribeToClick(Cube cube)
-    {
-        cube.Clicked -= HandleCubeClick;
-    }
 
     private void DestroyCube(Cube cube)
     {
-        UnsubscribeToClick(cube);
         Destroy(cube.gameObject);
     }
 
@@ -86,7 +72,6 @@ public class CubeCoordinator : MonoBehaviour
     {
         foreach (Cube newCube in cubes)
         {
-            SubscribeToClick(newCube);
 
             Vector3 direction =
                 newCube.transform.position - explosionPosition;
