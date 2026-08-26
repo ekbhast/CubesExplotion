@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "CubesExplotion.sln"
+    "dotnet.defaultSolution": "CubesExplotion.sln",
+    "dotnet.preferCSharpExtension": true
 }
