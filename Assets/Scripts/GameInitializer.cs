@@ -6,6 +6,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private int _cubeCount;
     [SerializeField] private Cube _cubePrefab;
     [SerializeField] private Spawner _spawner;
+    [SerializeField] private Handler _handler;
 
     private CubeFactory _factory;
 
@@ -18,7 +19,9 @@ public class GameInitializer : MonoBehaviour
 
     void Start()
     {
-        _factory = new CubeFactory(_cubePrefab);        
+        _factory = new CubeFactory(_cubePrefab);
+        _handler.Initialize(_factory);
+                
 
         List<Cube> cubes = _factory.Create(
             _startPosition,
@@ -29,27 +32,6 @@ public class GameInitializer : MonoBehaviour
 
         _spawner.Spawn(cubes, true);
     }
-
-    // private void TrySplitCube(Cube cube)
-    // {
-    //     bool shouldSplit = Random.Range(0f, 1f) <= cube.SplitChance;
-
-    //     if (shouldSplit)
-    //     {
-    //         Vector3 scale = cube.Scale / 2;
-    //         Vector3 explotionPosition = cube.transform.position;
-    //         float splitChance = cube.SplitChance / 2;
-    //         int cubeCount = Random.Range((int)MinSplitCubeValue, (int)MaxSplitCubeValue + 1);
-
-    //         List<Vector3> cubePositions = GenerateCubePositions(cube.transform.position, scale, cubeCount);
-    //         List<Cube> cubes = _factory.Create(cubePositions, scale, splitChance);
-
-    //        ApplyExplosionForce(cubes, explotionPosition);
-    //     }
-    // }
-
-
-
     // private void DestroyCube(Cube cube)
     // {
     //     Destroy(cube.gameObject);

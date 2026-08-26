@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,14 +6,12 @@ using UnityEngine;
 public class Raycaster : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
+
+    public event Action<Cube> CubeHit;
+    
     void Start()
     {
         SubscribeToMouseCkick();
-    }
-
-    void Update()
-    {
-        
     }
 
     private void SubscribeToMouseCkick()
@@ -26,9 +25,11 @@ public class Raycaster : MonoBehaviour
 
         if(Physics.Raycast(ray, out RaycastHit hit))
         {
-            GameObject target = hit.collider.gameObject;
-            Debug.Log(target);
+            Cube cube = hit.collider.GetComponent<Cube>();
+            if (cube != null)
+            {
+               CubeHit?.Invoke(cube); 
+            }
         }
     }
-
 }
