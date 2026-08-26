@@ -3,28 +3,30 @@ using UnityEngine;
 
 public class CubeFactory
 {   
-    private Cube _prefab;
-
-    public CubeFactory(Cube prefab)
-    {
-        _prefab = prefab;
-    }
+    private Cube _cubePrefab;
     
-    public List<Cube> Create(List<Vector3> cubePositions, Vector3 scale, float splitChance)
+    public CubeFactory(Cube cubePrefab)
+    {
+        _cubePrefab = cubePrefab;
+    } 
+
+    public List<Cube> Create(Vector3 position,int cubeCount, Vector3 scale, float splitChance)
     {
         List<Cube> cubes = new();
 
-        foreach (Vector3 cubePosition in cubePositions)
+        for (int i = 0; i < cubeCount; i++)
         {
-            Cube cube = Object.Instantiate(_prefab);
-            cube.Initialize(
-                cubePosition,
+            Cube cube = Object.Instantiate(_cubePrefab);
+            cube.gameObject.SetActive(false);
+
+            cubes.Add(cube);
+
+            cubes[i].Initialize(
+                position,
                 scale,
                 Random.ColorHSV(),
                 splitChance 
             );
-
-            cubes.Add(cube);
         }
 
         return cubes;

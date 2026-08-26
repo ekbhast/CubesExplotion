@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 168084410}
   - component: {fileID: 168084411}
   m_Layer: 0
-  m_Name: Cubes
+  m_Name: GameInitializer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 083584160ccd8e62f8bac58e18ec5fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cubeCount: 15
+  _cubeCount: 2
   _cubePrefab: {fileID: 1615344876999323059, guid: 95ea45a072696d39b9afc2ff05b2d273,
     type: 3}
 --- !u!1 &316787531
