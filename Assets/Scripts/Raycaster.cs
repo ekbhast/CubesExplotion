@@ -6,6 +6,7 @@ using UnityEngine;
 public class Raycaster : MonoBehaviour
 {
     private InputReader _inputReader;
+    private LayerMask _cubeLayer;
 
     public event Action<Cube> CubeHit;
     
@@ -14,9 +15,10 @@ public class Raycaster : MonoBehaviour
         SubscribeToMouseCkick();
     }
 
-    public void Initialize(InputReader inputReader)
+    public void Initialize(InputReader inputReader, LayerMask cubeLayer)
     {
         _inputReader = inputReader;
+        _cubeLayer = cubeLayer;
     }
 
     private void SubscribeToMouseCkick()
@@ -28,9 +30,10 @@ public class Raycaster : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(ray, out RaycastHit hit))
+        if(Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _cubeLayer))
         {
             Cube cube = hit.collider.GetComponent<Cube>();
+            Debug.Log(cube);
             if (cube != null)
             {
                CubeHit?.Invoke(cube); 

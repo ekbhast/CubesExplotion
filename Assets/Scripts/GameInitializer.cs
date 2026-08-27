@@ -10,6 +10,8 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private Splitter _splitter;
     [SerializeField] private Raycaster _raycaster;
     [SerializeField] private InputReader _inputReader;
+    [SerializeField] private LayerMask _cubeLayer;
+
 
 
     private CubeFactory _factory;
@@ -22,7 +24,7 @@ public class GameInitializer : MonoBehaviour
         _factory = new CubeFactory(_cubePrefab);
         _handler.Initialize(_factory, _splitter, _spawner, _raycaster);
         _splitter.Initialize(_factory);
-        _raycaster.Initialize(_inputReader);              
+        _raycaster.Initialize(_inputReader, _cubeLayer);              
 
         List<Cube> cubes = _factory.Create(
             _startPosition,
