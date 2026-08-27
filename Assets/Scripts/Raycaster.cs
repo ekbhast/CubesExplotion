@@ -8,15 +8,12 @@ public class Raycaster : MonoBehaviour
 
     public event Action<Cube> CubeHit;
     
-    public void Start()
-    {
-        SubscribeToMouseClick();
-    }
-
     public void Initialize(InputReader inputReader, LayerMask cubeLayer)
     {
         _inputReader = inputReader;
         _cubeLayer = cubeLayer;
+
+        SubscribeToMouseClick();
     }
 
     private void OnDestroy()
