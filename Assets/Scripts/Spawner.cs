@@ -19,10 +19,6 @@ public class Spawner : MonoBehaviour
     {
         foreach (Cube cube in cubes)
         {
-            cube.transform.position = cube.Position;
-            cube.transform.localScale = cube.Scale;
-            cube.gameObject.SetActive(true);  
-
             if (start)
             {
                 cube.transform.position = cube.Position + new Vector3(
@@ -32,6 +28,13 @@ public class Spawner : MonoBehaviour
 
                 yield return new WaitForSeconds(_startSpawnTime);
             }
+            else
+            {
+                cube.transform.position = cube.Position;
+            }
+
+            cube.transform.localScale = cube.Scale;
+            cube.gameObject.SetActive(true);  
         }
     }
 
