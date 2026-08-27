@@ -10,7 +10,7 @@ public class Raycaster : MonoBehaviour
     
     public void Start()
     {
-        SubscribeToMouseCkick();
+        SubscribeToMouseClick();
     }
 
     public void Initialize(InputReader inputReader, LayerMask cubeLayer)
@@ -19,9 +19,19 @@ public class Raycaster : MonoBehaviour
         _cubeLayer = cubeLayer;
     }
 
-    private void SubscribeToMouseCkick()
+    private void OnDestroy()
+    {
+        UnSubscribeToMouseClick();
+    }
+
+    private void SubscribeToMouseClick()
     {
        _inputReader.Clicked += Raycast;
+    }
+
+    private void UnSubscribeToMouseClick()
+    {
+        _inputReader.Clicked -= Raycast;
     }
 
     private void Raycast()
