@@ -6,7 +6,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private int _cubeCount;
     [SerializeField] private Cube _cubePrefab;
     [SerializeField] private Spawner _spawner;
-    [SerializeField] private Handler _handler;
+    [SerializeField] private CubeHitHandler _cubeHitHandler;
     [SerializeField] private Splitter _splitter;
     [SerializeField] private Raycaster _raycaster;
     [SerializeField] private InputReader _inputReader;
@@ -22,7 +22,7 @@ public class GameInitializer : MonoBehaviour
     void Start()
     {
         _factory = new CubeFactory(_cubePrefab);
-        _handler.Initialize(_splitter, _spawner, _raycaster);
+        _cubeHitHandler.Initialize(_splitter, _spawner, _raycaster);
         _splitter.Initialize(_factory);
         _raycaster.Initialize(_inputReader, _cubeLayer);              
 

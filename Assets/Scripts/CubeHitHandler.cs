@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Handler : MonoBehaviour
+public class CubeHitHandler : MonoBehaviour
 {
     private Raycaster _raycaster;
     private Spawner _spawner;

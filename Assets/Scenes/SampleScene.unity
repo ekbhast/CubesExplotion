@@ -298,7 +298,7 @@ MonoBehaviour:
   _cubePrefab: {fileID: 1615344876999323059, guid: 95ea45a072696d39b9afc2ff05b2d273,
     type: 3}
   _spawner: {fileID: 1559344314}
-  _handler: {fileID: 1640400118}
+  _cubeHitHandler: {fileID: 0}
   _splitter: {fileID: 2136422117}
   _raycaster: {fileID: 1512972016}
   _inputReader: {fileID: 1619646311}
@@ -1163,7 +1163,7 @@ GameObject:
   - component: {fileID: 1640400119}
   - component: {fileID: 1640400118}
   m_Layer: 0
-  m_Name: Handler
+  m_Name: CubeHitHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
