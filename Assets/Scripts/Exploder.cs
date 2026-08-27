@@ -17,9 +17,7 @@ public class Exploder
 
                 direction.Normalize();
 
-                Rigidbody rigidbody = newCube.GetComponent<Rigidbody>();
-
-                rigidbody.AddForce(
+                newCube.Rigidbody.AddForce(
                     direction * _force,
                     ForceMode.Impulse
                 );
