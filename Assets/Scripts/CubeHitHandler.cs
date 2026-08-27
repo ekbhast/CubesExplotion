@@ -15,6 +15,11 @@ public class CubeHitHandler : MonoBehaviour
         SubscribeCubeHit();
     }
 
+    public void Oestroy()
+    {
+        UnSubcribeCubeHit();
+    }
+
     public void Initialize(Splitter splitter, Spawner spawner, Raycaster raycaster)
     {
         _splitter = splitter;
@@ -36,7 +41,6 @@ public class CubeHitHandler : MonoBehaviour
     {
         bool isShouldSplit = Random.Range(_minSplitChance, _maxSplitChance) <= cube.SplitChance;
 
-        UnSubcribeCubeHit();
         _spawner.DestroyCube(cube);
 
         if (isShouldSplit)
