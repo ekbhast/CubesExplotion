@@ -13,14 +13,11 @@ public class Exploder
 
             foreach (Cube newCube in cubes)
             {
-
-                Vector3 direction =
-                    newCube.transform.position - explosionPosition;
+                Vector3 direction = newCube.transform.position - explosionPosition;
 
                 direction.Normalize();
 
-                Rigidbody rigidbody =
-                    newCube.GetComponent<Rigidbody>();
+                Rigidbody rigidbody = newCube.GetComponent<Rigidbody>();
 
                 rigidbody.AddForce(
                     direction * _force,
