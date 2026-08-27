@@ -6,7 +6,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private float _startSpawnTime = 0.4f;
-    private Shifter _shifter = new Shifter();  
+    private Shifter _shifter = new();  
 
     public void Spawn(List<Cube> cubes, bool start = false)
     {
@@ -18,7 +18,6 @@ public class Spawner : MonoBehaviour
         {
             foreach (Cube cube in cubes)
             {
-                cube.transform.position = cube.Position;
                 cube.transform.localScale = cube.Scale;
                 cube.gameObject.SetActive(true); 
             }
