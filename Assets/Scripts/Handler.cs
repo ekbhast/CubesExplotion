@@ -35,14 +35,20 @@ public class Handler : MonoBehaviour
 
         if (shouldSplit)
         {
-            
+            List<Cube> cubes = SplitCube(cube);
+            _spawner.Spawn(cubes);
+        }
+    }
+
+    private List<Cube> SplitCube(Cube cube)
+    {
             Vector3 scale = cube.Scale / 2;
             Vector3 explotionPosition = cube.transform.position;
             float splitChance = cube.SplitChance / 2;
             int cubeCount = Random.Range((int)_minSplitCubeValue, (int)_maxSplitCubeValue + 1);
 
             List<Cube> cubes = _factory.Create(explotionPosition, cubeCount, scale, splitChance);
-            _spawner.Spawn(cubes);
-        }
+
+            return cubes;
     }
 }

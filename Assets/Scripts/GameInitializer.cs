@@ -9,13 +9,9 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private Handler _handler;
 
     private CubeFactory _factory;
-
     private Vector3 _startScale = new Vector3(1, 1, 1);
     private Vector3 _startPosition = new Vector3(0, 5f, 0);
-
     private float _startSplitChance = 1f;
-    // private float _minSplitCubeValue = 2f;
-    // private float _maxSplitCubeValue = 6f;
 
     void Start()
     {
