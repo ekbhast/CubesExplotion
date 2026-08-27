@@ -8,7 +8,7 @@ public class Raycaster : MonoBehaviour
 
     public event Action<Cube> CubeHit;
     
-    void Start()
+    public void Start()
     {
         SubscribeToMouseCkick();
     }

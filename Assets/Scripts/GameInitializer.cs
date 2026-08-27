@@ -19,7 +19,7 @@ public class GameInitializer : MonoBehaviour
     private Vector3 _startPosition = new Vector3(0, 5f, 0);
     private float _startSplitChance = 1f;
 
-    void Start()
+    public void Start()
     {
         _factory = new CubeFactory(_cubePrefab);
         _cubeHitHandler.Initialize(_splitter, _spawner, _raycaster);

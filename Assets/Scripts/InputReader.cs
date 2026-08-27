@@ -5,7 +5,7 @@ public class InputReader : MonoBehaviour
 {
     public event Action Clicked;
     
-    void Update()
+    public void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
