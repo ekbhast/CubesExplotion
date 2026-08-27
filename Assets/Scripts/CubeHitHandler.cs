@@ -10,11 +10,6 @@ public class CubeHitHandler : MonoBehaviour
     private float _minSplitChance = 0f;
     private Exploder _exploder = new();
 
-    public void Start()
-    {
-        SubscribeCubeHit();
-    }
-
     public void Oestroy()
     {
         UnSubcribeCubeHit();
@@ -25,6 +20,8 @@ public class CubeHitHandler : MonoBehaviour
         _splitter = splitter;
         _spawner = spawner;
         _raycaster = raycaster;
+
+        SubscribeCubeHit();
     }
 
     public void SubscribeCubeHit()
