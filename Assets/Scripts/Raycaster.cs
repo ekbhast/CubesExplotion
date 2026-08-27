@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class Raycaster : MonoBehaviour
 {
-    [SerializeField] private InputReader _inputReader;
+    private InputReader _inputReader;
 
     public event Action<Cube> CubeHit;
     
     void Start()
     {
         SubscribeToMouseCkick();
+    }
+
+    public void Initialize(InputReader inputReader)
+    {
+        _inputReader = inputReader;
     }
 
     private void SubscribeToMouseCkick()

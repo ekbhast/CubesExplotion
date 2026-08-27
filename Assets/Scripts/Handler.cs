@@ -3,23 +3,24 @@ using System.Collections.Generic;
 
 public class Handler : MonoBehaviour
 {
-    [SerializeField] private Raycaster _raycaster;
-    [SerializeField] private Spawner _spawner;
-
+    private Raycaster _raycaster;
+    private Spawner _spawner;
+    private Splitter _splitter;
     private CubeFactory _factory;
     private float _maxSplitChance = 1f;
     private float _minSplitChance = 0f;
-    private float _minSplitCubeValue = 2f;
-    private float _maxSplitCubeValue = 6f;
 
     public void Start()
     {
         SubscribeCubeHit();
     }
 
-    public void Initialize(CubeFactory factory)
+    public void Initialize(CubeFactory factory, Splitter splitter, Spawner spawner, Raycaster raycaster)
     {
         _factory = factory;
+        _splitter = splitter;
+        _spawner = spawner;
+        _raycaster = raycaster;
     }
 
     public void SubscribeCubeHit()
@@ -35,20 +36,10 @@ public class Handler : MonoBehaviour
 
         if (shouldSplit)
         {
-            List<Cube> cubes = SplitCube(cube);
+            List<Cube> cubes = _splitter.Split(cube);
             _spawner.Spawn(cubes);
         }
     }
 
-    private List<Cube> SplitCube(Cube cube)
-    {
-            Vector3 scale = cube.Scale / 2;
-            Vector3 explotionPosition = cube.transform.position;
-            float splitChance = cube.SplitChance / 2;
-            int cubeCount = Random.Range((int)_minSplitCubeValue, (int)_maxSplitCubeValue + 1);
 
-            List<Cube> cubes = _factory.Create(explotionPosition, cubeCount, scale, splitChance);
-
-            return cubes;
-    }
 }
