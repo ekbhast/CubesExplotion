@@ -6,18 +6,17 @@ public class Handler : MonoBehaviour
     private Raycaster _raycaster;
     private Spawner _spawner;
     private Splitter _splitter;
-    private CubeFactory _factory;
     private float _maxSplitChance = 1f;
     private float _minSplitChance = 0f;
+    private Exploder _exploder = new();
 
     public void Start()
     {
         SubscribeCubeHit();
     }
 
-    public void Initialize(CubeFactory factory, Splitter splitter, Spawner spawner, Raycaster raycaster)
+    public void Initialize(Splitter splitter, Spawner spawner, Raycaster raycaster)
     {
-        _factory = factory;
         _splitter = splitter;
         _spawner = spawner;
         _raycaster = raycaster;
@@ -38,6 +37,7 @@ public class Handler : MonoBehaviour
         {
             List<Cube> cubes = _splitter.Split(cube);
             _spawner.Spawn(cubes);
+            _exploder.Explode(cubes, cube);
         }
     }
 

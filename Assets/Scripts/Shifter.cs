@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Shifter
@@ -19,17 +17,18 @@ public class Shifter
         return cube;
     }
 
-public void ShiftSplitCubePositions(
-    List<Cube> cubes,
-    Vector3 explosionCenter,
-    Vector3 scale)
+    public void ShiftSplitCubePositions(
+        List<Cube> cubes,
+        Vector3 explosionCenter,
+        Vector3 scale)
     {
         float spacing = scale.x + _spacingValue;
+        int columnsPerRow = 3;
 
         for (int i = 0; i < cubes.Count; i++)
         {
-            int column = i % 3;
-            int row = i / 3;
+            int column = i % columnsPerRow;
+            int row = i / columnsPerRow;
 
             Vector3 offset = new Vector3(
                 (column - 1) * spacing,

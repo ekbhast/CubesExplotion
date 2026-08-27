@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Raycaster : MonoBehaviour
@@ -33,7 +31,6 @@ public class Raycaster : MonoBehaviour
         if(Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _cubeLayer))
         {
             Cube cube = hit.collider.GetComponent<Cube>();
-            Debug.Log(cube);
             if (cube != null)
             {
                CubeHit?.Invoke(cube); 

@@ -1,18 +1,31 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Exploder : MonoBehaviour
+public class Exploder
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private float _force = 5f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void Explode(
+        List<Cube> cubes,
+        Cube cube)
+        {
+            Vector3 explosionPosition = cube.transform.position;
+
+            foreach (Cube newCube in cubes)
+            {
+
+                Vector3 direction =
+                    newCube.transform.position - explosionPosition;
+
+                direction.Normalize();
+
+                Rigidbody rigidbody =
+                    newCube.GetComponent<Rigidbody>();
+
+                rigidbody.AddForce(
+                    direction * _force,
+                    ForceMode.Impulse
+                );
+            }
+        }
 }

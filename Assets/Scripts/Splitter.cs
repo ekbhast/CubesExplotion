@@ -7,6 +7,8 @@ public class Splitter : MonoBehaviour
     private Shifter _shifter = new();
     private float _minSplitCubeValue = 2f;
     private float _maxSplitCubeValue = 6f;
+    private int _decreaseScaleValue = 2; 
+    private int _decreaseChanse = 2; 
 
     public void Initialize(CubeFactory factory)
     {
@@ -15,9 +17,9 @@ public class Splitter : MonoBehaviour
 
     public List<Cube> Split(Cube cube)
     {
-        Vector3 scale = cube.Scale / 2;
+        Vector3 scale = cube.Scale / _decreaseScaleValue;
         Vector3 parentCubePosition = cube.transform.position;
-        float splitChance = cube.SplitChance / 2;
+        float splitChance = cube.SplitChance / _decreaseChanse;
         int cubeCount = Random.Range((int)_minSplitCubeValue, (int)_maxSplitCubeValue + 1);
 
         List<Cube> cubes = _factory.Create(parentCubePosition, cubeCount, scale, splitChance);
