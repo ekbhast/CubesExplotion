@@ -27,13 +27,19 @@ public class CubeHitHandler : MonoBehaviour
         _raycaster.CubeHit += TrySplitCube;
     }
 
+    public void UnSubcribeCubeHit()
+    {
+        _raycaster.CubeHit -= TrySplitCube;
+    }
+
     private void TrySplitCube(Cube cube)
     {
-        bool shouldSplit = Random.Range(_minSplitChance, _maxSplitChance) <= cube.SplitChance;
+        bool isShouldSplit = Random.Range(_minSplitChance, _maxSplitChance) <= cube.SplitChance;
 
+        UnSubcribeCubeHit();
         _spawner.DestroyCube(cube);
 
-        if (shouldSplit)
+        if (isShouldSplit)
         {
             List<Cube> cubes = _splitter.Split(cube);
             _spawner.Spawn(cubes);
