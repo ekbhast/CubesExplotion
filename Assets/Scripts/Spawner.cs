@@ -7,9 +7,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float _startSpawnTime = 0.4f;
     private Shifter _shifter = new();  
 
-    public void Spawn(List<Cube> cubes, bool start = false)
+    public void Spawn(List<Cube> cubes, bool isStart = false)
     {
-        if (start)
+        if (isStart)
         {
         StartCoroutine(SpawnCoroutine(cubes));
         } 
