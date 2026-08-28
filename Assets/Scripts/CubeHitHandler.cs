@@ -44,7 +44,7 @@ public class CubeHitHandler : MonoBehaviour
         {
             List<Cube> cubes = _splitter.Split(cube);
             _spawner.Spawn(cubes);
-            _exploder.Explode(cubes, cube);
+            _exploder.ExplodeAfterSplitCubes(cubes, cube);
         }
     }
 

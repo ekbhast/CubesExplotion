@@ -5,7 +5,7 @@ public class Exploder
 {
     private float _force = 5f;
 
-    public void Explode(
+    public void ExplodeAfterSplitCubes(
         List<Cube> cubes,
         Cube cube)
         {
