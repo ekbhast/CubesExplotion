@@ -8,19 +8,19 @@ public class Exploder
     public void ExplodeAfterSplitCubes(
         List<Cube> cubes,
         Cube cube)
+    {
+        Vector3 explosionPosition = cube.transform.position;
+
+        foreach (Cube newCube in cubes)
         {
-            Vector3 explosionPosition = cube.transform.position;
+            Vector3 direction = newCube.transform.position - explosionPosition;
 
-            foreach (Cube newCube in cubes)
-            {
-                Vector3 direction = newCube.transform.position - explosionPosition;
+            direction.Normalize();
 
-                direction.Normalize();
-
-                newCube.Rigidbody.AddForce(
-                    direction * _force,
-                    ForceMode.Impulse
-                );
-            }
+            newCube.Rigidbody.AddForce(
+                direction * _force,
+                ForceMode.Impulse
+            );
         }
+    }
 }
