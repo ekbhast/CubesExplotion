@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
     public class Exploder
@@ -25,6 +24,9 @@ using UnityEngine;
 
     public void ExplodeAfterDestroyCube(Cube cube)
     {
+        float explosionForceByScale = _force/cube.Scale.x;
+        float explosionRadiudByScle = _radius/cube.Scale.x;
+
         Vector3 explosionPosition = cube.transform.position;
         Collider[] objects = Physics.OverlapSphere(explosionPosition, _radius);
 
@@ -34,7 +36,7 @@ using UnityEngine;
 
             if (rigidbody != null)
             {
-                rigidbody.AddExplosionForce(10f, explosionPosition, _radius, 0f, ForceMode.Impulse);
+                rigidbody.AddExplosionForce(explosionForceByScale, explosionPosition, explosionRadiudByScle, 0f, ForceMode.Impulse);
             }
         }
     }
