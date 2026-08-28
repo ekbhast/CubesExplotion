@@ -3,8 +3,8 @@ using UnityEngine;
 
     public class Exploder
     {
-    private float _force = 5f;
-    private float _radius = 2f;
+    private float _force = 2f;
+    private float _radius = 1f;
 
     public void ExplodeAfterSplitCubes(
         List<Cube> cubes,
