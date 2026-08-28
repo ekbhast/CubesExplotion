@@ -38,14 +38,20 @@ public class CubeHitHandler : MonoBehaviour
     {
         bool isShouldSplit = Random.Range(_minSplitChance, _maxSplitChance) <= cube.SplitChance;
 
-        _spawner.DestroyCube(cube);
-
         if (isShouldSplit)
         {
+            Debug.Log("Split");
+
             List<Cube> cubes = _splitter.Split(cube);
             _spawner.Spawn(cubes);
             _exploder.ExplodeAfterSplitCubes(cubes, cube);
         }
+        else
+        {
+            Debug.Log("explode");
+            _exploder.ExplodeAfterDestroyCube(cube);
+        }
+        _spawner.DestroyCube(cube);
     }
 
 
