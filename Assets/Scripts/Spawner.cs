@@ -14,19 +14,12 @@ public class Spawner : MonoBehaviour
         _waitTime = new WaitForSeconds(_startSpawnTime);
     }
 
-    public void Spawn(List<Cube> cubes, bool isStart = false)
+    public void SpawnForStartGame(List<Cube> cubes)
     {
-        if (isStart)
-        {
-            StartCoroutine(SpawnCoroutine(cubes));
-        } 
-        else
-        {
-           Activate(cubes);
-        }
+        StartCoroutine(SpawnCoroutine(cubes));
     }
 
-    private void Activate(List<Cube> cubes)
+    public void Spawn(List<Cube> cubes)
     {
         foreach (Cube cube in cubes)
         {

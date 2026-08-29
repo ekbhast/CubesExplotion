@@ -33,6 +33,6 @@ public class GameBootstrapper : MonoBehaviour
             _startSplitChance
             );
 
-        _spawner.Spawn(cubes, true);
+        _spawner.SpawnForStartGame(cubes);
     }
 }
