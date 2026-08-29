@@ -18,7 +18,6 @@ public class CubeFactory
         {
             Cube cube = Object.Instantiate(_cubePrefab);
             cube.gameObject.SetActive(false);
-            cube.gameObject.layer = LayerMask.NameToLayer("Cube");
 
             cubes.Add(cube);
 
