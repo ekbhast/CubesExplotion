@@ -18,15 +18,20 @@ public class Spawner : MonoBehaviour
     {
         if (isStart)
         {
-        StartCoroutine(SpawnCoroutine(cubes));
+            StartCoroutine(SpawnCoroutine(cubes));
         } 
         else
         {
-            foreach (Cube cube in cubes)
-            {
-                cube.transform.localScale = cube.Scale;
-                cube.gameObject.SetActive(true); 
-            }
+           Activate(cubes);
+        }
+    }
+
+    private void Activate(List<Cube> cubes)
+    {
+        foreach (Cube cube in cubes)
+        {
+            cube.transform.localScale = cube.Scale;
+            cube.gameObject.SetActive(true); 
         }
     }
 
