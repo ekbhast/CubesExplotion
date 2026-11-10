@@ -10,7 +10,7 @@ public class CubeHitHandler : MonoBehaviour
     private float _minSplitChance = 0f;
     private Exploder _exploder = new();
 
-    public void Oestroy()
+    private void OnDestroy()
     {
         UnSubcribeCubeHit();
     }
